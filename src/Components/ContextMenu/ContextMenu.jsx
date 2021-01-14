@@ -4,17 +4,13 @@ import './ContextMenu.css';
 import Menu from '@material-ui/core/Menu';
 import { getActionsByMultipleFiles } from '../../Api/ApiHandler.js';
 import MoveAction from './ContextMenuActions/MoveAction.jsx';
-import CopyAction from './ContextMenuActions/CopyAction.jsx';
 
 class ContextMenu extends Component {
 
     render() {
         const { acts, visible, x, y } = this.props;
         const actionsComp = acts.map((act, key) => {
-            let component;
-            if (act === 'copy') {
-                component = <CopyAction key={key} />;
-            }            
+            let component;           
             if (act === 'move') {
                 component = <MoveAction key={key} />;
             }
