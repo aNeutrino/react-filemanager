@@ -20,7 +20,7 @@ import { getHumanFileSize } from '../../Api/ApiHandler';
 
 class File extends Component {
     render() {
-        const { isSelected, type, name, size, handleClick, handleDoubleClick, handleContextMenu } = this.props;
+        const { isSelected, type, name, size, handleClick, handleDoubleClick, handleContextMenu, goal } = this.props;
         const avatarStyle = {
             backgroundColor: isSelected ? blue['A200'] : null
         };
@@ -34,6 +34,7 @@ class File extends Component {
                         </Avatar>
                     </ListItemAvatar>
                     <ListItemText className="filename" primary={name} secondary={realSize} />
+                    <span> {goal} </span>
                 </ListItem>
             </div>
         );
