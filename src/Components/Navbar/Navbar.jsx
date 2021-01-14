@@ -9,7 +9,6 @@ import { withStyles } from '@material-ui/core/styles';
 import SearchIcon from '@material-ui/icons/Search';
 import { connect } from 'react-redux';
 import { setFileListFilter, enterToPreviousDirectoryByIndex } from '../../Actions/Actions.js';
-import ThreeDotsMenu from './ThreeDotsMenu.jsx';
 import BreadcrumbText from '../Breadcrumb/BreadcrumbText.jsx';
 import { enterToPreviousDirectory } from '../../Actions/Actions.js';
 
@@ -107,7 +106,6 @@ function SearchAppBar(props) {
               }}
             />
           </div>
-          <ThreeDotsMenu />
         </Toolbar>
       </AppBar>
     </div>
