@@ -4,7 +4,6 @@ import './ContextMenu.css';
 import Menu from '@material-ui/core/Menu';
 import { getActionsByMultipleFiles } from '../../Api/ApiHandler.js';
 import OpenAction from './ContextMenuActions/OpenAction.jsx';
-import RemoveAction from './ContextMenuActions/RemoveAction.jsx';
 import MoveAction from './ContextMenuActions/MoveAction.jsx';
 import CopyAction from './ContextMenuActions/CopyAction.jsx';
 import EditAction from './ContextMenuActions/EditAction.jsx';
@@ -34,9 +33,6 @@ class ContextMenu extends Component {
             }
             if (act === 'download') {
                 component = <DownloadAction key={key} />;
-            }
-            if (act === 'remove') {
-                component = <RemoveAction key={key} />;
             }
             return component;
         });
