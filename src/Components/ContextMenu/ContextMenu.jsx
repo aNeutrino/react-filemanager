@@ -5,8 +5,6 @@ import Menu from '@material-ui/core/Menu';
 import { getActionsByMultipleFiles } from '../../Api/ApiHandler.js';
 import MoveAction from './ContextMenuActions/MoveAction.jsx';
 import CopyAction from './ContextMenuActions/CopyAction.jsx';
-import RenameAction from './ContextMenuActions/RenameAction.jsx';
-import DownloadAction from './ContextMenuActions/DownloadAction.jsx';
 
 class ContextMenu extends Component {
 
@@ -19,12 +17,6 @@ class ContextMenu extends Component {
             }            
             if (act === 'move') {
                 component = <MoveAction key={key} />;
-            }
-            if (act === 'rename') {
-                component = <RenameAction key={key} />;
-            }
-            if (act === 'download') {
-                component = <DownloadAction key={key} />;
             }
             return component;
         });
