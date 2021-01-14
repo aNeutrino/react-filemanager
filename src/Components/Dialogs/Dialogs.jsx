@@ -14,9 +14,9 @@ function Dialogs(props) {
             <DialogEdit />
             <DialogCreateFolder />
             <DialogMove />
-            <DialogCopy />
-            <DialogRename />
-            <DialogUploadFile />
+            {/*<DialogCopy />*/}
+            {/*<DialogRename />*/}
+            {/*<DialogUploadFile />*/}
         </div>
     );
 }

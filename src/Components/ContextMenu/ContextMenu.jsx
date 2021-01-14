@@ -3,10 +3,8 @@ import { connect } from 'react-redux';
 import './ContextMenu.css';
 import Menu from '@material-ui/core/Menu';
 import { getActionsByMultipleFiles } from '../../Api/ApiHandler.js';
-import OpenAction from './ContextMenuActions/OpenAction.jsx';
 import MoveAction from './ContextMenuActions/MoveAction.jsx';
 import CopyAction from './ContextMenuActions/CopyAction.jsx';
-import EditAction from './ContextMenuActions/EditAction.jsx';
 import RenameAction from './ContextMenuActions/RenameAction.jsx';
 import DownloadAction from './ContextMenuActions/DownloadAction.jsx';
 
@@ -16,12 +14,6 @@ class ContextMenu extends Component {
         const { acts, visible, x, y } = this.props;
         const actionsComp = acts.map((act, key) => {
             let component;
-            if (act === 'open') {
-                component = <OpenAction key={key} />;
-            }
-            if (act === 'edit') {
-                component = <EditAction key={key} />;
-            }
             if (act === 'copy') {
                 component = <CopyAction key={key} />;
             }            
