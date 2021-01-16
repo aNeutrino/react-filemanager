@@ -16,15 +16,13 @@ import FolderIcon from '@material-ui/icons/Folder';
 import FileIcon from '@material-ui/icons/InsertDriveFile';
 import blue from '@material-ui/core/colors/blue';
 import config from '../../config.js';
-import { getHumanFileSize } from '../../Api/ApiHandler';
 
 class File extends Component {
     render() {
-        const { isSelected, type, name, size, handleClick, handleDoubleClick, handleContextMenu, goal } = this.props;
+        const { isSelected, type, name, handleClick, handleDoubleClick, handleContextMenu, goal } = this.props;
         const avatarStyle = {
             backgroundColor: isSelected ? blue['A200'] : null
         };
-        const realSize = typeof size !== 'undefined' && type !== 'dir' ? getHumanFileSize(size) : null;
         return (
             <div className="File" onClick={handleClick} onDoubleClick={handleDoubleClick} onContextMenu={handleContextMenu} data-selected={isSelected}>
                 <ListItem>
@@ -33,8 +31,9 @@ class File extends Component {
                             { type === 'dir' ? <FolderIcon /> : <FileIcon />}
                         </Avatar>
                     </ListItemAvatar>
-                    <ListItemText className="filename" primary={name} secondary={realSize} />
-                    <span> {goal} </span>
+                    <ListItem>
+                        <ListItemText className="filename" primary={name} secondary={goal} />
+                    </ListItem>
                 </ListItem>
             </div>
         );
