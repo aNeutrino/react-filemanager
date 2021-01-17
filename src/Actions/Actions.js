@@ -507,3 +507,31 @@ export const setFileUploadList = (files) => {
         value: files
     };
 };
+
+export const setGoalsList = (goalList) => {
+    return {
+        type: 'SET_GOAL_LIST',
+        value: goalList
+    };
+};
+
+/**
+ * Request API to get the goals list
+ * @returns {Function}
+ */
+export const getLFSGoalsList = () => (dispatch) => {
+    dispatch(setLoading(true));
+    dispatch(setSelectedFiles([]));
+
+    APIHandler.getLFSGoalsList().then(r => {
+        dispatch(setLoading(false));
+        dispatch(setGoalsList(r));
+    }).catch(r => {
+        dispatch(setGoalsList([]));
+        dispatch({
+            type: 'SET_ERROR_MSG',
+            value: r.toString()
+        });
+        dispatch(setLoading(false));
+    });
+};

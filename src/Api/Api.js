@@ -6,7 +6,7 @@ import config from './../config.js';
  * @returns {Object}
  */
 export function list(path) {
-    return fetch(config.url_list + '?path=' + (encodeURIComponent(path) || '/'));
+    return fetch(config.url_list + '?path=' + (encodeURIComponent(path) || '/mnt/lizardfs'));
 };
 
 
@@ -129,10 +129,18 @@ export function upload(path, fileList, formData = new FormData()) {
 
     return fetch(config.url_upload, {
         method: 'POST',
-        body: formData, 
+        body: formData,
         headers: {
             // a workaround for node connector, passing the path by header
             path: path
         }
     });
+};
+
+/**
+ * Fetch API to list the LFS goals from directory
+ * @returns {Object}
+ */
+export function listLFSGoals() {
+    return fetch(config.url_lfsgoals_list);
 };

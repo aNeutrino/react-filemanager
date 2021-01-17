@@ -21,7 +21,8 @@ export const defaultState = {
     visibleDialogRename: false,
     fileContentBlobUrl: null,
     fileUploadProgress: 0,
-    fileUploadList: []
+    fileUploadList: [],
+    goalList: []
 };
 
 /**
@@ -148,6 +149,11 @@ const MainReducer = (state = defaultState, action) => {
             state.fileContentBlobUrl && URL.revokeObjectURL(state.fileContentBlobUrl);
             return Object.assign({}, state, { 
                 fileContentBlobUrl: action.value ? URL.createObjectURL(action.value) : null
+            });
+
+        case 'SET_GOAL_LIST':
+            return Object.assign({}, state, { 
+                goalList: action.value
             });
 
         default:

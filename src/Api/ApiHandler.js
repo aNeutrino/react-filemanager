@@ -276,3 +276,15 @@ export const getHumanFileSize = (bytes) => {
     const e = (Math.log(bytes) / Math.log(1e3)) | 0;
     return +(bytes / Math.pow(1e3, e)).toFixed(2) + ' ' + ('kMGTPEZY'[e - 1] || '') + 'B';
 };
+
+/**
+ * Get list of LFS goals
+ * @returns {Object}
+ */
+export const getLFSGoalsList = () => {
+    return new Promise((resolve, reject) => {
+        return API.listLFSGoals()
+            .then(handleFetch(resolve, reject).xthen)
+            .catch(handleFetch(resolve, reject).xcatch)
+    })   
+};
