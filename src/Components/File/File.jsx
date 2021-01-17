@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import {
     enterToDirectory, setContextMenuVisible, toggleSelectedFile, setContextMenuPosition,
     setSelectedFileFromLastTo, getFileContent, getFileContentForEdit, 
-    rightClickOnFile, setSelectedFiles
+    rightClickOnFile, setSelectedFiles, getLFSGoalsList
 } from '../../Actions/Actions.js';
 import './File.css';
 
@@ -31,9 +31,7 @@ class File extends Component {
                             { type === 'dir' ? <FolderIcon /> : <FileIcon />}
                         </Avatar>
                     </ListItemAvatar>
-                    <ListItem>
-                        <ListItemText className="filename" primary={name} secondary={goal} />
-                    </ListItem>
+                    <ListItemText className="filename" primary={name} secondary={goal} />
                 </ListItem>
             </div>
         );
@@ -85,6 +83,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
             }
             
             dispatch(setContextMenuVisible(true));
+            dispatch(getLFSGoalsList())
             dispatch(setContextMenuPosition(x, y));
         },
 

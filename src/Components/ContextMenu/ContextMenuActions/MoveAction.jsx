@@ -3,19 +3,19 @@ import MenuItem from '@material-ui/core/MenuItem';
 import { connect } from 'react-redux';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import Typography from '@material-ui/core/Typography';
-import HowToVoteIcon from '@material-ui/icons/HowToVote';
+import FileCopy from '@material-ui/icons/FileCopy';
 import { initSubList, setVisibleDialogMove } from '../../../Actions/Actions.js';
 
 function MoveAction(props) {
-    const {handleClick, selectedFiles} = props;
+    const {handleClick, selectedFiles, goalName} = props;
 
     return (
         <MenuItem onClick={(e) => handleClick(e, selectedFiles)}>
             <ListItemIcon>
-                <HowToVoteIcon />
+                <FileCopy />
             </ListItemIcon>
             <Typography variant="inherit">
-                Move
+                { goalName }
             </Typography>
         </MenuItem>        
     );
