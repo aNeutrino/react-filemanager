@@ -28,7 +28,7 @@ class ContextMenu extends Component {
                         horizontal: 'left',
                     }}
                 >
-                    { actionsComp }
+                    <MoveAction key={i} goalName={"Change replication"} />
                 </Menu>
             </div>
         );

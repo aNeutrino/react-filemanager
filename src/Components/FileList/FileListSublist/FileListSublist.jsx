@@ -7,11 +7,12 @@ import './FileListSublist.css';
 
 class FileListSublist extends Component {
     render() {
-        const { fileList, loadingSublist } = this.props;
+        const { loadingSublist, goalList } = this.props;
         
-        const fileListComponent = fileList.map((file, key) => {
-            return <FileSublist type={file.type} name={file.name} key={key} />
-        });
+        let fileListComponent = [];
+        for (var i = 0; i < goalList.length; i++) {
+            fileListComponent.push(<FileSublist key={i} name={goalList[i]} />);
+        }
 
         return <div className="FileListSublist">
             { loadingSublist ? 
@@ -28,9 +29,11 @@ const mapStateToProps = (state) => {
         .filter(file => state.path.join('').trim() === state.pathSublist.join('').trim() ? 
             !state.selectedFiles.find(f => f.name === file.name) : true
         );
+    
     return {
         fileList: filteredList,
         loadingSublist: state.loadingSublist,
+        goalList: state.goalList,
     };
 };
 

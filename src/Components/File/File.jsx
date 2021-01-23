@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import {
     enterToDirectory, setContextMenuVisible, toggleSelectedFile, setContextMenuPosition,
     setSelectedFileFromLastTo, getFileContent, getFileContentForEdit, 
-    rightClickOnFile, setSelectedFiles, getLFSGoalsList
+    rightClickOnFile, setSelectedFiles, getLFSGoalsList, setSelectedFile
 } from '../../Actions/Actions.js';
 import './File.css';
 
@@ -83,6 +83,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
             }
             
             dispatch(setContextMenuVisible(true));
+            // dispatch(setSelectedFiles([ownProps]));
             dispatch(getLFSGoalsList())
             dispatch(setContextMenuPosition(x, y));
         },
@@ -100,6 +101,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
                 dispatch(setSelectedFileFromLastTo(ownProps));
             } else {
                 dispatch(setSelectedFiles([ownProps]));
+                dispatch(setSelectedFile(ownProps.name))
             }
         }
     };

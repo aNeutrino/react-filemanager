@@ -1,41 +1,52 @@
 import React, { Component } from 'react';
 import Button from '@material-ui/core/Button';
+
+import Checkbox from '@material-ui/core/Checkbox';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
 import { connect } from 'react-redux';
-import { setVisibleDialogMove, setSelectedFolderSublist, enterToPreviousDirectorySublist, moveItems } from '../../../Actions/Actions.js';
-import FileListSublist from '../../FileList/FileListSublist/FileListSublist.jsx'; 
-import KeyboardArrowLeftIcon from '@material-ui/icons/KeyboardArrowLeft';
+import { setVisibleDialogMove, setSelectedFolderSublist, setGoalName, refreshFileList } from '../../../Actions/Actions.js';
+import FileListSublist from '../../FileList/FileListSublist/FileListSublist.jsx';
 
 class FormDialog extends Component {
 
+    componentDidMount() {
+        this.setState({ isRecursive: true })
+      }
+    
+    isRecursiveChange(event) {
+        this.setState({ isRecursive: event.target.checked })
+    };
+
+
     render() {
-        const { 
-            selectedPath, handleClose, handleSave, open, 
-            selectedFiles, canGoBack, canMove, handleGoBack 
+        const {
+            selectedPath, handleClose, handleSave, open,
+            canMove,
         } = this.props;
 
         return (
             <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-move" fullWidth={true} maxWidth={'sm'}>
                 <form>
                     <DialogTitle id="form-dialog-move">
-                        Move files to <small style={{color: 'grey'}}>{ selectedPath.join('/') }</small>
+                        Change replication to <strong style={{ color: 'green' }}>{selectedPath[selectedPath.length - 1]}</strong>
                     </DialogTitle>
                     <DialogContent>
                         <FileListSublist />
                     </DialogContent>
                     <DialogActions>
-                        <Button onClick={handleGoBack} color="primary" type="button" disabled={!canGoBack}>
-                            <KeyboardArrowLeftIcon /> Go back directory
-                        </Button>
-
+                        <FormControlLabel
+                            control={<Checkbox defaultChecked={true} onChange={(e) => this.isRecursiveChange(e)} />}
+                            label="Is recursive"
+                        />
                         <Button onClick={handleClose} color="primary" type="button">
                             Cancel
                         </Button>
-                        <Button color="primary" onClick={(e) => handleSave(e, selectedFiles)} disabled={!canMove} type="submit">
-                            Move
+                        <Button color="primary" onClick={(e) => handleSave(e, this.state.isRecursive)} disabled={!canMove} type="submit">
+                            Set replication 
                         </Button>
                     </DialogActions>
                 </form>
@@ -54,8 +65,8 @@ const mapStateToProps = (state) => {
         selectedPath: state.selectedFolderSublist ? [...state.pathSublist, state.selectedFolderSublist.name] : [],
         selectedFiles: state.selectedFiles,
         pathSublist: state.pathSublist,
-        canGoBack: state.pathSublist.length,
-        canMove: state.selectedFolderSublist && canMove
+        canMove: state.selectedFolderSublist && canMove,
+        isRecursive: true
     };
 };
 
@@ -65,12 +76,11 @@ const mapDispatchToProps = (dispatch, ownProps) => {
             dispatch(setSelectedFolderSublist(null));
             dispatch(setVisibleDialogMove(false));
         },
-        handleSave: (event, selectedFiles) => {
-            dispatch(moveItems(selectedFiles));
-        },
-        handleGoBack: (event) => {
+        handleSave: (event, isRecursive) => {
+            dispatch(setGoalName(isRecursive));
+            dispatch(refreshFileList());
             dispatch(setSelectedFolderSublist(null));
-            dispatch(enterToPreviousDirectorySublist());
+            dispatch(setVisibleDialogMove(false));
         }
     };
 };
