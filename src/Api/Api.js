@@ -144,3 +144,19 @@ export function upload(path, fileList, formData = new FormData()) {
 export function listLFSGoals() {
     return fetch(config.url_lfsgoals_list);
 };
+
+/**
+ * Fetch API to list the LFS goals from directory
+ * @returns {Object}
+ */
+export function setLFSGoal(path, goalName, isRecursive) {
+    return fetch(config.url_set_goal, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            path, goalName, isRecursive
+        })
+    });
+};

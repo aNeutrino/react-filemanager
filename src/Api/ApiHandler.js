@@ -288,3 +288,17 @@ export const getLFSGoalsList = () => {
             .catch(handleFetch(resolve, reject).xcatch)
     })   
 };
+
+
+/**
+ * Set new goal name
+ * @param {String} path
+ * @returns {Object}
+ */
+export const setLFSGoal = (path, goalName, isRecursive) => {    
+    return new Promise((resolve, reject) => {
+        return API.setLFSGoal(path, goalName, isRecursive)
+            .then(handleFetch(resolve, reject).xthen)
+            .catch(handleFetch(resolve, reject).xcatch)
+    })   
+};
