@@ -58,24 +58,32 @@ const MainReducer = (state = defaultState, action) => {
                 fileListSublist: action.value.sort((a, b) => a.type < b.type ? -1 : a.name.toLowerCase() > b.name.toLowerCase())
             });
         case 'SET_FILE_LIST_FILTER':
-            return Object.assign({}, state, { 
+            return Object.assign({}, state, {
                 fileListFilter: action.value
             });
         case 'SET_CONTEXT_MENU_VISIBLE':
-            return Object.assign({}, state, { 
+            return Object.assign({}, state, {
                 contextMenuVisible: action.value
             });
         case 'SET_CONTEXT_MENU_POSITION':
-            return Object.assign({}, state, { 
+            return Object.assign({}, state, {
                 contextMenuPosition: action.value
             });
         case 'SET_CONTEXT_MENU_POSITION_ELEMENT':
-            return Object.assign({}, state, { 
+            return Object.assign({}, state, {
                 contextMenuPositionElement: action.value
             });
         case 'SET_SELECTED_FILES':
             return Object.assign({}, state, {
                 selectedFiles: (action.value).filter((f, i, self) => self.map(ff => ff.name).indexOf(f.name) === i)
+            });
+        case 'SET_SELECTED_FILE':
+            return Object.assign({}, state, {
+                selectedFile: action.value
+            });
+        case 'SET_SELECTED_NEW_GOAL':
+            return Object.assign({}, state, {
+                selectedNewGoal: action.value
             });
         case 'SET_SELECTED_FOLDER_SUB_LIST':
             return Object.assign({}, state, {
@@ -93,48 +101,48 @@ const MainReducer = (state = defaultState, action) => {
                 fileUploadProgress: parseInt(action.value || 0)
             });
         case 'SET_LOADING':
-            return Object.assign({}, state, { 
+            return Object.assign({}, state, {
                 loading: action.value
             });
         case 'SET_LOADING_SUB_LIST':
-            return Object.assign({}, state, { 
+            return Object.assign({}, state, {
                 loadingSublist: action.value
             });
         case 'SET_ERROR_MSG':
-            return Object.assign({}, state, { 
+            return Object.assign({}, state, {
                 errorMsg: action.value
             });
 
         case 'SET_VISIBLE_DIALOG_CREATE_FOLDER':
-            return Object.assign({}, state, { 
+            return Object.assign({}, state, {
                 visibleDialogCreateFolder: !!action.value
             });
-            
+
         case 'SET_VISIBLE_DIALOG_UPLOAD_FILE':
-            return Object.assign({}, state, { 
+            return Object.assign({}, state, {
                 visibleDialogUploadFile: !!action.value
             });
 
         case 'SET_VISIBLE_DIALOG_CONTENT':
-            return Object.assign({}, state, { 
+            return Object.assign({}, state, {
                 visibleDialogContent: !!action.value
             });
 
         case 'SET_VISIBLE_DIALOG_EDIT':
-            return Object.assign({}, state, { 
+            return Object.assign({}, state, {
                 visibleDialogEdit: !!action.value
             });
 
         case 'SET_VISIBLE_DIALOG_MOVE':
-            return Object.assign({}, state, { 
+            return Object.assign({}, state, {
                 visibleDialogMove: !!action.value
             });
         case 'SET_VISIBLE_DIALOG_COPY':
-            return Object.assign({}, state, { 
+            return Object.assign({}, state, {
                 visibleDialogCopy: !!action.value
             });
         case 'SET_VISIBLE_DIALOG_RENAME':
-            return Object.assign({}, state, { 
+            return Object.assign({}, state, {
                 visibleDialogRename: !!action.value
             });
         case 'SET_FILE_UPLOAD_LIST':
@@ -147,12 +155,12 @@ const MainReducer = (state = defaultState, action) => {
              * Removing old blob url
              */
             state.fileContentBlobUrl && URL.revokeObjectURL(state.fileContentBlobUrl);
-            return Object.assign({}, state, { 
+            return Object.assign({}, state, {
                 fileContentBlobUrl: action.value ? URL.createObjectURL(action.value) : null
             });
 
         case 'SET_GOAL_LIST':
-            return Object.assign({}, state, { 
+            return Object.assign({}, state, {
                 goalList: action.value
             });
 

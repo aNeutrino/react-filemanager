@@ -375,6 +375,22 @@ export const setSelectedFiles = (files) => {
     };
 };
 
+
+export const setSelectedFile = (file) => {
+    return {
+        type: 'SET_SELECTED_FILE',
+        value: file
+    };
+};
+
+
+export const setSelectedNewGoal = (goal) => {
+    return {
+        type: 'SET_SELECTED_NEW_GOAL',
+        value: goal
+    };
+};
+
 export const setSelectedFolderSublist = (file) => {
     return {
         type: 'SET_SELECTED_FOLDER_SUB_LIST',
@@ -525,6 +541,52 @@ export const getLFSGoalsList = () => (dispatch) => {
 
     APIHandler.getLFSGoalsList().then(r => {
         dispatch(setLoading(false));
+        dispatch(setGoalsList(r));
+    }).catch(r => {
+        dispatch(setGoalsList([]));
+        dispatch({
+            type: 'SET_ERROR_MSG',
+            value: r.toString()
+        });
+        dispatch(setLoading(false));
+    });
+};
+
+
+
+/**
+ * Request API to get the goals list
+ * @returns {Function}
+ */
+export const setLFSGoal = () => (dispatch) => {
+    dispatch(setLoading(true));
+    dispatch(setSelectedFiles([]));
+
+    APIHandler.setLFSGoal().then(r => {
+        dispatch(setLoading(false));
+        dispatch(setGoalsList(r));
+    }).catch(r => {
+        dispatch(setGoalsList([]));
+        dispatch({
+            type: 'SET_ERROR_MSG',
+            value: r.toString()
+        });
+        dispatch(setLoading(false));
+    });
+};
+
+/**
+ * Request API to set new goal name to a file
+ * @param {Array} filenames
+ * @returns {Function}
+ */
+export const setGoalName = (isRecursive) => (dispatch, getState) => {
+    const { path, selectedFile, selectedNewGoal } = getState();
+
+    dispatch(setLoading(true));
+    APIHandler.setLFSGoal(path.join('/') + "/" + selectedFile, selectedNewGoal, isRecursive).then(r => {
+        dispatch(setLoading(false));
+        dispatch(setVisibleDialogMove(false));
         dispatch(setGoalsList(r));
     }).catch(r => {
         dispatch(setGoalsList([]));
