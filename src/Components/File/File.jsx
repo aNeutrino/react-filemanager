@@ -14,14 +14,13 @@ import ListItemText from '@material-ui/core/ListItemText';
 import Avatar from '@material-ui/core/Avatar';
 import FolderIcon from '@material-ui/icons/Folder';
 import FileIcon from '@material-ui/icons/InsertDriveFile';
-import blue from '@material-ui/core/colors/blue';
 import config from '../../config.js';
 
 class File extends Component {
     render() {
         const { isSelected, type, name, handleClick, handleDoubleClick, handleContextMenu, goal } = this.props;
         const avatarStyle = {
-            backgroundColor: isSelected ? blue['A200'] : null
+            backgroundColor: isSelected ? '#ffbe59' : null
         };
         return (
             <div className="File" onClick={handleClick} onDoubleClick={handleDoubleClick} onContextMenu={handleContextMenu} data-selected={isSelected}>

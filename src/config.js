@@ -1,4 +1,4 @@
-const host = 'http://192.168.0.80:8000';
+const host = 'http://10.53.53.5:8000';
 
 export default {
     url_list: `${host}/filemanager/list`,
@@ -14,6 +14,7 @@ export default {
     url_compress: `${host}/filemanager/items/compress`,
     url_extract: `${host}/filemanager/file/extract`,
     url_lfsgoals_list: `${host}/filemanager/getLFSGoals`,
+    url_set_goal: `${host}/filemanager/setLFSGoal`,
 
     isEditableFilePattern: /\.(txt|diff?|patch|svg|asc|cnf|cfg|conf|html?|cfm|cgi|aspx?|ini|pl|py|md|css|cs|jsx?|jsp|log|htaccess|htpasswd|gitignore|gitattributes|env|json|atom|eml|rss|markdown|sql|xml|xslt?|sh|rb|as|bat|cmd|cob|for|ftn|frm|frx|inc|lisp|scm|coffee|php[3-6]?|java|c|cbl|go|h|scala|vb|tmpl|lock|go|yml|yaml|tsv|lst)$/i,
     isImageFilePattern: /\.(jpe?g|gif|bmp|png|svg|tiff?)$/i,

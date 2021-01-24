@@ -8,13 +8,14 @@ const styles = theme => ({
   progress: {
     margin: theme.spacing.unit * 10,
   },
+
 });
 
 function Loader(props) {
     const { classes } = props;
     return (
         <Grid container justify="center">
-            <CircularProgress className={classes.progress} color="secondary" />
+            <CircularProgress className={classes.progress} style= {{ 'color': '#ffbe59'}} />
         </Grid>
     );
 }

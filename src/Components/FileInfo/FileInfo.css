@@ -18,5 +18,5 @@
 
 .File[data-selected=true],
 .File[data-selected=true] > li > div > span {
-    color: #ffbe59;
+    color: #1967d2;
 }

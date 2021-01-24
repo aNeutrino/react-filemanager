@@ -15,7 +15,23 @@ import { enterToPreviousDirectory } from '../../Actions/Actions.js';
 const styles = theme => ({
   root: {
     width: '100%',
-    marginBottom: '4.3em'
+    marginBottom: '8.3em'
+  },
+  logo: {
+    maxWidth: 160,
+    height: 64,
+  },
+  container: {
+    display: 'flex',
+    marginBottom: 10,
+  },
+  logoDiv: {
+    width: '100%',
+    height: 64
+  },
+  toolbar: {
+    backgroundColor: '#592852',
+    display: 'block',
   },
   grow: {
     flexGrow: 1,
@@ -29,6 +45,10 @@ const styles = theme => ({
     [theme.breakpoints.up('sm')]: {
       display: 'block',
     },
+
+   float:'left',
+   clear: 'left',
+   color: '#ffbe59',
   },
   search: {
     position: 'relative',
@@ -45,6 +65,7 @@ const styles = theme => ({
       width: 'auto',
       display: 'block'
     },
+    color: '#ffbe59',
   },
   searchIcon: {
     width: theme.spacing.unit * 9,
@@ -80,32 +101,38 @@ function SearchAppBar(props) {
   return (
     <div className={classes.root}>
       <AppBar position="fixed">
-        <Toolbar>
-          <Typography className={classes.title} variant="h6" color="inherit" noWrap>
-            <BreadcrumbText 
-                path={path} 
-                handleClickPath={handleClickPath} 
-                handleGoBack={handleGoBack}
-                canGoBack={canGoBack}
-                rootTitle="React Filemanager"
-            />
-          </Typography>
-          <div className={classes.grow} />
-
-          <div className={classes.search}>
-            <div className={classes.searchIcon}>
-              <SearchIcon />
-            </div>
-            <InputBase
-              placeholder="Search…"
-              value={props.value}
-              onChange={props.handleChange}
-              classes={{
-                root: classes.inputRoot,
-                input: classes.inputInput,
-              }}
-            />
+        <Toolbar className= { classes.toolbar}>
+          <div className={classes.logoDiv}>
+            <img src="https://lizardfs.com/wp-content/themes/understrap-master/img/logo-white.svg" alt="logo"  className={classes.logo} />
           </div>
+          <div className = { classes.container}>
+            <Typography className={classes.title} variant="h6" color="inherit" noWrap>
+              <BreadcrumbText 
+                  path={path} 
+                  handleClickPath={handleClickPath} 
+                  handleGoBack={handleGoBack}
+                  canGoBack={canGoBack}
+                  rootTitle="LizardFS manager"
+              />
+            </Typography>
+            <div className={classes.grow} />
+
+            <div className={classes.search}>
+              <div className={classes.searchIcon}>
+                <SearchIcon />
+              </div>
+              <InputBase
+                placeholder="Search…"
+                value={props.value}
+                onChange={props.handleChange}
+                classes={{
+                  root: classes.inputRoot,
+                  input: classes.inputInput,
+                }}
+              />
+            </div>
+          </div>
+         
         </Toolbar>
       </AppBar>
     </div>

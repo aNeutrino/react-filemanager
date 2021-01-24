@@ -9,6 +9,7 @@ import blue from '@material-ui/core/colors/blue';
 import { connect } from 'react-redux';
 import { setContextMenuVisible, refreshFileList } from './Actions/Actions.js';
 import DynamicSnackbar from './Components/Notification/DynamicSnackbar.jsx'; 
+import FileInfo from './Components/FileInfo/FileInfo.jsx';
 
 const theme = createMuiTheme({
     palette: {

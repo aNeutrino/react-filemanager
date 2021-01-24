@@ -32,7 +32,7 @@ class FormDialog extends Component {
             <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-move" fullWidth={true} maxWidth={'sm'}>
                 <form>
                     <DialogTitle id="form-dialog-move">
-                        Change replication to <strong style={{ color: 'green' }}>{selectedPath[selectedPath.length - 1]}</strong>
+                        Change replication to <strong style={{ color: '#ffbe59' }}>{selectedPath[selectedPath.length - 1]}</strong>
                     </DialogTitle>
                     <DialogContent>
                         <FileListSublist />
@@ -40,7 +40,7 @@ class FormDialog extends Component {
                     <DialogActions>
                         <FormControlLabel
                             control={<Checkbox defaultChecked={true} onChange={(e) => this.isRecursiveChange(e)} />}
-                            label="Is recursive"
+                            label="Recursive"
                         />
                         <Button onClick={handleClose} color="primary" type="button">
                             Cancel

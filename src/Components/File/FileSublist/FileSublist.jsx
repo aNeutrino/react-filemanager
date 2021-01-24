@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { 
-    setSelectedFolderSublist, enterToDirectorySublist, setSelectedFiles, setSelectedFile, setSelectedNewGoal 
+    setSelectedFolderSublist, setSelectedNewGoal 
 } from '../../../Actions/Actions.js';
 
 import { withStyles } from '@material-ui/core/styles';
@@ -11,7 +11,6 @@ import ListItemText from '@material-ui/core/ListItemText';
 import Avatar from '@material-ui/core/Avatar';
 import FolderIcon from '@material-ui/icons/Folder';
 import FileIcon from '@material-ui/icons/InsertDriveFile';
-import blue from '@material-ui/core/colors/blue';
 import '../File.css';
 
 const styles = theme => ({
@@ -22,7 +21,7 @@ class FileSublist extends Component {
     render() {
         const { type, name, handleClick, isSelected, handleDoubleClick } = this.props;
         const avatarStyle = {
-            backgroundColor: isSelected ? blue['A200'] : null
+            backgroundColor: isSelected ? '#ffbe59' : null
         };
         return (
             <div className="File" onClick={handleClick} data-selected={isSelected} onDoubleClick={handleDoubleClick}>
