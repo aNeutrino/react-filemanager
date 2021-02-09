@@ -2,18 +2,13 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './ContextMenu.css';
 import { Menu } from '@material-ui/core';
-import MoveAction from './ContextMenuActions/MoveAction.jsx';
+import SetGoalAction from './ContextMenuActions/SetGoalAction.jsx';
 
 class ContextMenu extends Component {
     
     render() {
 
-        const { visible, x, y, goalList } = this.props;
-
-        let actionsComp = [];
-        for (var i = 0; i < goalList.length; i++) {
-            actionsComp.push(<MoveAction key={i} goalName={goalList[i]} />);
-        }
+        const { visible, x, y } = this.props
 
         return (
             <div>
@@ -28,7 +23,7 @@ class ContextMenu extends Component {
                         horizontal: 'left',
                     }}
                 >
-                    <MoveAction key={i} goalName={"Change replication"} />
+                    <SetGoalAction goalName={"Change replication"} />
                 </Menu>
             </div>
         );

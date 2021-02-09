@@ -536,8 +536,6 @@ export const setGoalsList = (goalList) => {
  * @returns {Function}
  */
 export const getLFSGoalsList = () => (dispatch) => {
-    dispatch(setLoading(true));
-    dispatch(setSelectedFiles([]));
 
     APIHandler.getLFSGoalsList().then(r => {
         dispatch(setLoading(false));
@@ -581,19 +579,25 @@ export const setLFSGoal = () => (dispatch) => {
  * @returns {Function}
  */
 export const setGoalName = (isRecursive) => (dispatch, getState) => {
-    const { path, selectedFile, selectedNewGoal } = getState();
+    const { path, selectedNewGoal, selectedFiles } = getState();
 
     dispatch(setLoading(true));
-    APIHandler.setLFSGoal(path.join('/') + "/" + selectedFile, selectedNewGoal, isRecursive).then(r => {
-        dispatch(setLoading(false));
-        dispatch(setVisibleDialogMove(false));
-        dispatch(setGoalsList(r));
-    }).catch(r => {
-        dispatch(setGoalsList([]));
-        dispatch({
-            type: 'SET_ERROR_MSG',
-            value: r.toString()
+
+    for (let index = 0; index < selectedFiles.length; index++) {
+        APIHandler.setLFSGoal(path.join('/') + "/" + selectedFiles[index].name, selectedNewGoal, isRecursive).then(r => {
+            dispatch(setLoading(false));
+            dispatch(setVisibleDialogMove(false));
+            dispatch(setGoalsList(r));
+        }).catch(r => {
+            dispatch(setGoalsList([]));
+            dispatch({
+                type: 'SET_ERROR_MSG',
+                value: r.toString()
+            });
+            dispatch(setLoading(false));
         });
-        dispatch(setLoading(false));
-    });
+        
+    }
+
+    
 };

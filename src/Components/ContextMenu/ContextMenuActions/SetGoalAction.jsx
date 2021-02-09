@@ -6,7 +6,7 @@ import Typography from '@material-ui/core/Typography';
 import FileCopy from '@material-ui/icons/FileCopy';
 import { initSubList, setVisibleDialogMove, getLFSGoalsList } from '../../../Actions/Actions.js';
 
-function MoveAction(props) {
+function SetGoalAction(props) {
     const {handleClick, selectedFiles, goalName, isSelected} = props;
     const avatarStyle = {
         backgroundColor: isSelected ? '#ffbe59' : null
@@ -40,4 +40,4 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(MoveAction);
+export default connect(mapStateToProps, mapDispatchToProps)(SetGoalAction);
