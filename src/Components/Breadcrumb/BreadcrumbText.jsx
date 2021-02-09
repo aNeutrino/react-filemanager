@@ -25,7 +25,7 @@ class BreadcrumbText extends Component {
     render() {
         const { classes, handleClickPath, path, rootTitle, handleGoBack, canGoBack } = this.props;
 
-        const separator = <span>&gt;</span>;
+        const separator = <span>/</span>;
         const rootPath = <span onClick={(e) => handleClickPath(e, -1, path)} data-index={0}>
             { rootTitle } { path.length ? separator : '' }
         </span>;
