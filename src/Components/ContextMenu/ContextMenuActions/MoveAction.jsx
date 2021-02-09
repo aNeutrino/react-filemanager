@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import Typography from '@material-ui/core/Typography';
 import FileCopy from '@material-ui/icons/FileCopy';
-import { initSubList, setVisibleDialogMove } from '../../../Actions/Actions.js';
+import { initSubList, setVisibleDialogMove, getLFSGoalsList } from '../../../Actions/Actions.js';
 
 function MoveAction(props) {
     const {handleClick, selectedFiles, goalName, isSelected} = props;
@@ -35,6 +35,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         handleClick: (event, selectedFiles) => {
             dispatch(initSubList());
             dispatch(setVisibleDialogMove(true));
+            dispatch(getLFSGoalsList())
         }
     };
 };

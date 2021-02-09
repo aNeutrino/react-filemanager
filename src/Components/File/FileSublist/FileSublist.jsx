@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { 
-    setSelectedFolderSublist, setSelectedNewGoal 
+    enterToDirectorySublist, setSelectedFolderSublist, setSelectedNewGoal 
 } from '../../../Actions/Actions.js';
 
 import { withStyles } from '@material-ui/core/styles';
@@ -53,8 +53,8 @@ const mapDispatchToProps = (dispatch, ownProps) => {
          * @returns {undefined}
          */
         handleDoubleClick: (event) => {
-            // dispatch(enterToDirectorySublist(ownProps.name));
-            // dispatch(setSelectedFolderSublist(null));
+            dispatch(enterToDirectorySublist(ownProps.name));
+            dispatch(setSelectedFolderSublist(null));
         },
 
         /**

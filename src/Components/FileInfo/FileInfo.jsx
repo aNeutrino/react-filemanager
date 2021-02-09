@@ -22,7 +22,6 @@ class FileInfo extends Component {
 
 
 const mapStateToProps = (state) => {
-    console.log('mapStateToProps state  ', state)
     return {
         name: state.selectedFiles.size>0 ? state.selectedFiles[0].name : '',
         type: state.selectedFiles.size>0 ? state.selectedFiles[0].type: '',

@@ -31,6 +31,7 @@ const mapStateToProps = (state) => {
         fileList: filteredList,
         loading: state.loading
     };
+    
 };
 
 
