@@ -1,4 +1,4 @@
-const host = 'http://10.53.53.5:8000';
+const host = process.env.REACT_APP_API_URL;
 
 export default {
     url_list: `${host}/filemanager/list`,
