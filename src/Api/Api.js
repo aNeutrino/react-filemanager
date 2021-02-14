@@ -6,7 +6,7 @@ import config from './../config.js';
  * @returns {Object}
  */
 export function list(path) {
-    return fetch(config.url_list + '?path=' + (encodeURIComponent(path) || '/mnt/lizardfs'));
+    return fetch(config.url_list + '?path=' + (encodeURIComponent(path) || process.env.REACT_APP_INITIAL_PATH));
 };
 
 
@@ -35,7 +35,7 @@ export function createDirectory(path, directory) {
  * @returns {Object}
  */
 export function getFileContent(path) {
-    return fetch(config.url_get_content + '?path=' + (encodeURIComponent(path) || '/'));
+    return fetch(config.url_get_content + '?path=' + (encodeURIComponent(path) || process.env.REACT_APP_INITIAL_PATH));
 };
 
 

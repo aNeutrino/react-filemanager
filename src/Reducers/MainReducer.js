@@ -1,5 +1,5 @@
 export const defaultState = {
-    path: [],
+    path: process.env.REACT_APP_INITIAL_PATH.split('/').slice(1),
     pathSublist: [],
     fileList: [],
     fileListSublist: [],
